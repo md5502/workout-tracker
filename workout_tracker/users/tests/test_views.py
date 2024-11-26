@@ -6,8 +6,7 @@ from django.contrib import messages
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages.middleware import MessageMiddleware
 from django.contrib.sessions.middleware import SessionMiddleware
-from django.http import HttpRequest
-from django.http import HttpResponseRedirect
+from django.http import HttpRequest, HttpResponseRedirect
 from django.test import RequestFactory
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -15,20 +14,17 @@ from django.utils.translation import gettext_lazy as _
 from workout_tracker.users.forms import UserAdminChangeForm
 from workout_tracker.users.models import User
 from workout_tracker.users.tests.factories import UserFactory
-from workout_tracker.users.views import UserRedirectView
-from workout_tracker.users.views import UserUpdateView
-from workout_tracker.users.views import user_detail_view
+from workout_tracker.users.views import UserRedirectView, UserUpdateView, user_detail_view
 
 pytestmark = pytest.mark.django_db
 
 
 class TestUserUpdateView:
-    """
-    TODO:
-        extracting view initialization code as class-scoped fixture
-        would be great if only pytest-django supported non-function-scoped
-        fixture db access -- this is a work-in-progress for now:
-        https://github.com/pytest-dev/pytest-django/pull/258
+    """TODO:
+    extracting view initialization code as class-scoped fixture
+    would be great if only pytest-django supported non-function-scoped
+    fixture db access -- this is a work-in-progress for now:
+    https://github.com/pytest-dev/pytest-django/pull/258
     """
 
     def dummy_get_response(self, request: HttpRequest):
