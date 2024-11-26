@@ -1,0 +1,16 @@
+services:
+  docs:
+    image: workout_tracker_local_docs
+    container_name: workout_tracker_local_docs
+    build:
+      context: .
+      dockerfile: ./compose/local/docs/Dockerfile
+    env_file:
+      - ./.envs/.local/.django
+    volumes:
+      - ./docs:/docs:z
+      - ./config:/app/config:z
+      - ./workout_tracker:/app/workout_tracker:z
+    ports:
+      - '9000:9000'
+    command: /start-docs
